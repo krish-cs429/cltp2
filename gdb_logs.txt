@@ -1,0 +1,10 @@
+   29  next
+   30  next
+   31  next
+   32  print new_token->next
+   33  print new_val
+   34  continue
+   35  set logging file gdb_logs.txt
+   36  set logging overwrite on
+   37  set logging enabled on
+   38  show commands

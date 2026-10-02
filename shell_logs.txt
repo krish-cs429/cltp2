@@ -1,0 +1,500 @@
+   24  diff -u ref.out ci.out
+   25  make clean
+   26  make test_week2
+   27  # 1. To check why valid addition is failing:
+   28  ./ci_reference -i 'testcases/week2/add.s' -o ref.out
+   29  ./bin/ci -i 'testcases/week2/add.s' -o ci.out
+   30  diff -u ref.out ci.out
+   31  # 2. To check why memory is leaking on mov errors:
+   32  valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --error-exitcode=42 ./bin/ci -i 'testcases/week2/mov_err_args4.s'
+   33  # 3. To see why an add argument error is failing:
+   34  ./ci_reference -i 'testcases/week2/add_err_many_args.s' -o ref.out
+   35  ./bin/ci -i 'testcases/week2/add_err_many_args.s' -o ci.out
+   36  diff -u ref.out ci.out
+   37  make clean
+   38  make test_week2
+   39  cat src/ci/token_type.h
+   40  find . -name "token_type.h"
+   41  cat ./include/ci/token_type.h
+   42  make clean && make test_week2
+   43  make clean && make test_week2
+   44  make clean && make test_week2
+   45  valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --error-exitcode=42 ./bin/ci -i 'testcases/week2/add.s'
+   46  ./ci_reference -i 'testcases/week2/print.s' -o ref.out
+   47  ./bin/ci -i 'testcases/week2/print.s' -o ci.out
+   48  diff -u ref.out ci.out
+   49  ./ci_reference -i 'testcases/week2/mov_exhaustive.s' -o ref.out
+   50  ./bin/ci -i 'testcases/week2/mov_exhaustive.s' -o ci.out
+   51  diff -u ref.out ci.out
+   52  make clean && make test_week2
+   53  ./ci_reference -i 'testcases/week2/add_rand.s' -o ref.out
+   54  ./bin/ci -i 'testcases/week2/add_rand.s' -o ci.out
+   55  diff -u ref.out ci.out
+   56  ./ci_reference -i 'testcases/week2/sub_rand.s' -o ref.out
+   57  ./bin/ci -i 'testcases/week2/sub_rand.s' -o ci.out
+   58  diff -u ref.out ci.out
+   59  ./ci_reference -i 'testcases/week2/cmp_eq_imm.s' -o ref.out
+   60  ./bin/ci -i 'testcases/week2/cmp_eq_imm.s' -o ci.out
+   61  diff -u ref.out ci.out
+   62  ./ci_reference -i 'testcases/week2/cmp_lt_imm.s' -o ref.out
+   63  ./bin/ci -i 'testcases/week2/cmp_lt_imm.s' -o ci.out
+   64  diff -u ref.out ci.out
+   65  ./ci_reference -i 'testcases/week2/nop_err2.s' -o ref.out
+   66  ./bin/ci -i 'testcases/week2/nop_err2.s' -o ci.out
+   67  diff -u ref.out ci.out
+   68  ./ci_reference -i 'testcases/week2/add_err_invalid_args.s' -o ref.out
+   69  ./bin/ci -i 'testcases/week2/add_err_invalid_args.s' -o ci.out
+   70  diff -u ref.out ci.out
+   71  make clean && make test_week2
+   72  ./ci_reference -i 'testcases/week2/add_err_invalid_args.s' -o ref.out
+   73  ./bin/ci -i 'testcases/week2/add_err_invalid_args.s' -o ci.out
+   74  diff -u ref.out ci.out
+   75  ./ci_reference -i 'testcases/week2/add_rand.s' -o ref.out
+   76  ./bin/ci -i 'testcases/week2/add_rand.s' -o ci.out
+   77  diff -u ref.out ci.out
+   78  ./ci_reference -i 'testcases/week2/sub_err_invalid_args.s' -o ref.out
+   79  ./bin/ci -i 'testcases/week2/sub_err_invalid_args.s' -o ci.out
+   80  diff -u ref.out ci.out
+   81  ./ci_reference -i 'testcases/week2/sub_rand.s' -o ref.out
+   82  ./bin/ci -i 'testcases/week2/sub_rand.s' -o ci.out
+   83  diff -u ref.out ci.out
+   84  ./ci_reference -i 'testcases/week2/cmp_u_err_args4.s' -o ref.out
+   85  ./bin/ci -i 'testcases/week2/cmp_u_err_args4.s' -o ci.out
+   86  diff -u ref.out ci.out
+   87  ./ci_reference -i 'testcases/week2/mov_err_args4.s' -o ref.out
+   88  ./bin/ci -i 'testcases/week2/mov_err_args4.s' -o ci.out
+   89  ./ci_reference -i 'testcases/week2/mov_exhaustive.s' -o ref.out
+   90  ./bin/ci -i 'testcases/week2/mov_exhaustive.s' -o ci.out
+   91  diff -u ref.out ci.out
+   92  ./ci_reference -i 'testcases/week2/print.s' -o ref.out
+   93  ./bin/ci -i 'testcases/week2/print.s' -o ci.out
+   94  diff -u ref.out ci.out
+   95  { echo "========== add_err_invalid_args.s =========="; echo "--- TESTCASE ---"; cat testcases/week2/add_err_invalid_args.s; echo "--- DIFF ---"; ./ci_reference -i 'testcases/week2/add_err_invalid_args.s' -o ref.out; ./bin/ci -i 'testcases/week2/add_err_invalid_args.s' -o ci.out; diff -u ref.out ci.out;  echo "========== add_rand.s =========="; cat testcases/week2/add_rand.s; ./ci_reference -i 'testcases/week2/add_rand.s' -o ref.out; ./bin/ci -i 'testcases/week2/add_rand.s' -o ci.out; diff -u ref.out ci.out;  echo "========== cmp_u_err_args4.s =========="; cat testcases/week2/cmp_u_err_args4.s; ./ci_reference -i 'testcases/week2/cmp_u_err_args4.s' -o ref.out; ./bin/ci -i 'testcases/week2/cmp_u_err_args4.s' -o ci.out; diff -u ref.out ci.out;  echo "========== mov_err_args4.s =========="; cat testcases/week2/mov_err_args4.s; ./ci_reference -i 'testcases/week2/mov_err_args4.s' -o ref.out; ./bin/ci -i 'testcases/week2/mov_err_args4.s' -o ci.out; diff -u ref.out ci.out;  echo "========== mov_exhaustive.s =========="; cat testcases/week2/mov_exhaustive.s; ./ci_reference -i 'testcases/week2/mov_exhaustive.s' -o ref.out; ./bin/ci -i 'testcases/week2/mov_exhaustive.s' -o ci.out; diff -u ref.out ci.out;  echo "========== print.s =========="; cat testcases/week2/print.s; ./ci_reference -i 'testcases/week2/print.s' -o ref.out; ./bin/ci -i 'testcases/week2/print.s' -o ci.out; diff -u ref.out ci.out;  echo "========== sub_err_invalid_args.s =========="; cat testcases/week2/sub_err_invalid_args.s; ./ci_reference -i 'testcases/week2/sub_err_invalid_args.s' -o ref.out; ./bin/ci -i 'testcases/week2/sub_err_invalid_args.s' -o ci.out; diff -u ref.out ci.out;  echo "========== sub_rand.s =========="; cat testcases/week2/sub_rand.s; ./ci_reference -i 'testcases/week2/sub_rand.s' -o ref.out; ./bin/ci -i 'testcases/week2/sub_rand.s' -o ci.out; diff -u ref.out ci.out; } > all_diffs.txt
+   96  for t in add_rand sub_rand add_err_invalid_args sub_err_invalid_args cmp_u_err_args4 mov_err_args4; do echo "========== $t =========="; diff -u <(./ci_reference -i testcases/week2/$t.s) <(./bin/ci -i testcases/week2/$t.s) | head -50; done
+   97  make all && make test_week2
+   98  make all && make test_week2
+   99  make all && make test_week2
+  100  make all && make test_week2
+  101  make tests_week2
+  102  make clear && make test_week2
+  103  make test_week2
+  104  make test_week2
+  105  make test_week2
+  106  make test_week2
+  107  make test_week2
+  108  git status
+  109  git add src/ci/parser.c src/ci/interpreter.c src/ci/command.c
+  110  git status
+  111  git commit -m "Complete Week 2 without memory leak"
+  112  git push
+  113  git status
+  114  make clean
+  115  make all
+  116  make test_week2
+  117  make test_week3
+  118  make clean
+  119  make all
+  120  make test_week2
+  121  make test_week3
+  122  # Debug memory store failure
+  123  ./ci_reference -i 'testcases/week3/store.s' -o ref.out
+  124  ./bin/ci -i 'testcases/week3/store.s' -o ci.out
+  125  diff -u ref.out ci.out
+  126  # Debug bitwise instruction error handling failure
+  127  ./ci_reference -i 'testcases/week3/eor_err_invalid_args3.s' -o ref.out
+  128  ./bin/ci -i 'testcases/week3/eor_err_invalid_args3.s' -o ci.out
+  129  diff -u ref.out ci.out
+  130  make clean
+  131  make all
+  132  make test_week2
+  133  make test_week3
+  134  make clean
+  135  make all
+  136  make test_week2
+  137  make test_week3
+  138  #include <string.h>
+  139  make clean
+  140  make all
+  141  make test_week2
+  142  make test_week3
+  143  make clean
+  144  make all
+  145  make test_week2
+  146  make test_week3
+  147  make clean
+  148  make all
+  149  make test_week2
+  150  make test_week3
+  151  make clean
+  152  make all
+  153  make test_week2
+  154  make test_week3
+  155  git status
+  156  git diff -- src/ci/interpreter.c
+  157  git restore src/ci/interpreter.c
+  158  git status
+  159  make clean
+  160  make all
+  161  make test_week2
+  162  git fetch origin
+  163  git reset --hard origin/main
+  164  git clean -fd
+  165  git fetch origin
+  166  git reset --hard origin/main
+  167  git clean -fd
+  168  git status
+  169  make clean
+  170  make all
+  171  make test_week2
+  172  make clean
+  173  make all
+  174  make test_week2
+  175  make clean
+  176  make all
+  177  make test_week2
+  178  make test_week3
+  179  pwd
+  180  ./ci_reference -i 'testcases/week3/hello_world.s' -o ref.out
+  181  ./bin/ci -i 'testcases/week3/hello_world.s' -o ci.out
+  182  diff -u ref.out ci.out
+  183  ./ci_reference -i 'testcases/week3/load.s' -o ref.out
+  184  ./bin/ci -i 'testcases/week3/load.s' -o ci.out
+  185  diff -u ref.out ci.out
+  186  make clean
+  187  make all
+  188  make test_week3
+  189  ./ci_reference -i 'testcases/week3/store.s' -o ref.out
+  190  ./bin/ci -i 'testcases/week3/store.s' -o ci.out
+  191  diff -u ref.out ci.out
+  192  ./ci_reference -i 'testcases/week3/memory_store.s' -o ref.out
+  193  ./bin/ci -i 'testcases/week3/memory_store.s' -o ci.out
+  194  diff -u ref.out ci.out
+  195  ./ci_reference -i 'testcases/week3/load_store.s' -o ref.out
+  196  ./bin/ci -i 'testcases/week3/load_store.s' -o ci.out
+  197  diff -u ref.out ci.out
+  198  grep -n -A25 -B5 "CMD_STORE" src/ci/parser.c
+  199  grep -n -A30 -B5 "case CMD_STORE" src/ci/interpreter.c
+  200  cat testcases/week3/store.s
+  201  cat testcases/week3/memory_store.s
+  202  cat testcases/week3/load_store.s
+  203  grep -n -A35 -B5 "case TOK_LOAD" src/ci/parser.c
+  204  grep -n -A45 -B5 "case CMD_LOAD" src/ci/interpreter.c
+  205  make clean
+  206  make
+  207  ./ci_reference -i 'testcases/week3/store.s' -o ref.out
+  208  ./bin/ci -i 'testcases/week3/store.s' -o ci.out
+  209  diff -u ref.out ci.out
+  210  ./ci_reference -i 'testcases/week3/memory_store.s' -o ref.out
+  211  ./bin/ci -i 'testcases/week3/memory_store.s' -o ci.out
+  212  diff -u ref.out ci.out
+  213  ./ci_reference -i 'testcases/week3/load_store.s' -o ref.out
+  214  ./bin/ci -i 'testcases/week3/load_store.s' -o ci.out
+  215  diff -u ref.out ci.out
+  216  make clean
+  217  make
+  218  ./ci_reference -i 'testcases/week3/store.s' -o ref.out
+  219  ./bin/ci -i 'testcases/week3/store.s' -o ci.out
+  220  diff -u ref.out ci.out
+  221  ./ci_reference -i 'testcases/week3/memory_store.s' -o ref.out
+  222  ./bin/ci -i 'testcases/week3/memory_store.s' -o ci.out
+  223  diff -u ref.out ci.out
+  224  ./ci_reference -i 'testcases/week3/load_store.s' -o ref.out
+  225  ./bin/ci -i 'testcases/week3/load_store.s' -o ci.out
+  226  diff -u ref.out ci.out
+  227  grep -n -A80 -B5 "static.*parse_number\|parse_number" src/ci/parser.c
+  228  make clean
+  229  make
+  230  make test
+  231  make clean
+  232  make
+  233  make test
+  234  rm -f build/ci/ci.o build/ci/command.o build/ci/init.o build/ci/interpreter.o build/ci/lexer.o build/ci/mem.o build/ci/parser.o build/ci/token.o build/hashtable/hashtable.o build/argparse/argparse.o bin/ci
+  235  rm -rf bin build
+  236  mkdir -p build/ci
+  237  gcc -Iinclude -Iinclude/ci -std=c11 -Wall -Wextra -Wpedantic -Werror -Wformat=2 -Wshadow -Wwrite-strings -Wstrict-prototypes -Wold-style-definition -Wredundant-decls -Wnested-externs -Wmissing-include-dirs -Wjump-misses-init -Wlogical-op -Wduplicated-cond -Wduplicated-branches -Wformat-security -Wformat-signedness -Wimplicit-fallthrough=5 -fstack-protector-strong -Wno-unused-function -Wno-unused-parameter -O3 -c src/ci/ci.c -o build/ci/ci.o
+  238  gcc -Iinclude -Iinclude/ci -std=c11 -Wall -Wextra -Wpedantic -Werror -Wformat=2 -Wshadow -Wwrite-strings -Wstrict-prototypes -Wold-style-definition -Wredundant-decls -Wnested-externs -Wmissing-include-dirs -Wjump-misses-init -Wlogical-op -Wduplicated-cond -Wduplicated-branches -Wformat-security -Wformat-signedness -Wimplicit-fallthrough=5 -fstack-protector-strong -Wno-unused-function -Wno-unused-parameter -O3 -c src/ci/command.c -o build/ci/command.o
+  239  gcc -Iinclude -Iinclude/ci -std=c11 -Wall -Wextra -Wpedantic -Werror -Wformat=2 -Wshadow -Wwrite-strings -Wstrict-prototypes -Wold-style-definition -Wredundant-decls -Wnested-externs -Wmissing-include-dirs -Wjump-misses-init -Wlogical-op -Wduplicated-cond -Wduplicated-branches -Wformat-security -Wformat-signedness -Wimplicit-fallthrough=5 -fstack-protector-strong -Wno-unused-function -Wno-unused-parameter -O3 -c src/ci/init.c -o build/ci/init.o
+  240  gcc -Iinclude -Iinclude/ci -std=c11 -Wall -Wextra -Wpedantic -Werror -Wformat=2 -Wshadow -Wwrite-strings -Wstrict-prototypes -Wold-style-definition -Wredundant-decls -Wnested-externs -Wmissing-include-dirs -Wjump-misses-init -Wlogical-op -Wduplicated-cond -Wduplicated-branches -Wformat-security -Wformat-signedness -Wimplicit-fallthrough=5 -fstack-protector-strong -Wno-unused-function -Wno-unused-parameter -O3 -c src/ci/interpreter.c -o build/ci/interpreter.o
+  241  gcc -Iinclude -Iinclude/ci -std=c11 -Wall -Wextra -Wpedantic -Werror -Wformat=2 -Wshadow -Wwrite-strings -Wstrict-prototypes -Wold-style-definition -Wredundant-decls -Wnested-externs -Wmissing-include-dirs -Wjump-misses-init -Wlogical-op -Wduplicated-cond -Wduplicated-branches -Wformat-security -Wformat-signedness -Wimplicit-fallthrough=5 -fstack-protector-strong -Wno-unused-function -Wno-unused-parameter -O3 -c src/ci/lexer.c -o build/ci/lexer.o
+  242  gcc -Iinclude -Iinclude/ci -std=c11 -Wall -Wextra -Wpedantic -Werror -Wformat=2 -Wshadow -Wwrite-strings -Wstrict-prototypes -Wold-style-definition -Wredundant-decls -Wnested-externs -Wmissing-include-dirs -Wjump-misses-init -Wlogical-op -Wduplicated-cond -Wduplicated-branches -Wformat-security -Wformat-signedness -Wimplicit-fallthrough=5 -fstack-protector-strong -Wno-unused-function -Wno-unused-parameter -O3 -c src/ci/mem.c -o build/ci/mem.o
+  243  gcc -Iinclude -Iinclude/ci -std=c11 -Wall -Wextra -Wpedantic -Werror -Wformat=2 -Wshadow -Wwrite-strings -Wstrict-prototypes -Wold-style-definition -Wredundant-decls -Wnested-externs -Wmissing-include-dirs -Wjump-misses-init -Wlogical-op -Wduplicated-cond -Wduplicated-branches -Wformat-security -Wformat-signedness -Wimplicit-fallthrough=5 -fstack-protector-strong -Wno-unused-function -Wno-unused-parameter -O3 -c src/ci/parser.c -o build/ci/parser.o
+  244  src/ci/parser.c: In function ‘parse_cmd’:
+  245  src/ci/parser.c:593:9: error: switch jumps over variable initialization [-Werror=jump-misses-init]
+  246    593 |         case TOK_LOAD:       |         ^~~~
+  247  src/ci/parser.c:382:5: note: switch starts here
+  248    382 |     switch (token.type) {
+  249        |     ^~~~~~
+  250  src/ci/parser.c:573:19: note: ‘base’ declared here
+  251    573 |             Token base = advance(parser);
+  252        |                   ^~~~
+  253  src/ci/parser.c:608:9: error: switch jumps over variable initialization [-Werror=jump-misses-init]
+  254    608 |         case TOK_STORE:       |         ^~~~
+  255  src/ci/parser.c:382:5: note: switch starts here
+  256    382 |     switch (token.type) {
+  257        |     ^~~~~~
+  258  src/ci/parser.c:573:19: note: ‘base’ declared here
+  259    573 |             Token base = advance(parser);
+  260        |                   ^~~~
+  261  src/ci/parser.c:623:9: error: switch jumps over variable initialization [-Werror=jump-misses-init]
+  262    623 |         case TOK_PUT:       |         ^~~~
+  263  src/ci/parser.c:382:5: note: switch starts here
+  264    382 |     switch (token.type) {
+  265        |     ^~~~~~
+  266  src/ci/parser.c:573:19: note: ‘base’ declared here
+  267    573 |             Token base = advance(parser);
+  268        |                   ^~~~
+  269  src/ci/parser.c:636:9: error: switch jumps over variable initialization [-Werror=jump-misses-init]
+  270    636 |         default:
+  271        |         ^~~~~~~
+  272  src/ci/parser.c:382:5: note: switch starts here
+  273    382 |     switch (token.type) {
+  274        |     ^~~~~~
+  275  src/ci/parser.c:573:19: note: ‘base’ declared here
+  276    573 |             Token base = advance(parser);
+  277        |                   ^~~~
+  278  cc1: all warnings being treated as errors
+  279  make: *** [Makefile:105: build/ci/parser.o] Error 1
+  280  gcc -Iinclude -Iinclude/ci -std=c11 -Wall -Wextra -Wpedantic -Werror -Wformat=2 -Wshadow -Wwrite-strings -Wstrict-prototypes -Wold-style-definition -Wredundant-decls -Wnested-externs -Wmissing-include-dirs -Wjump-misses-init -Wlogical-op -Wduplicated-cond -Wduplicated-branches -Wformat-security -Wformat-signedness -Wimplicit-fallthrough=5 -fstack-protector-strong -Wno-unused-function -Wno-unused-parameter -c src/ci/parser.c -o build/ci/parser.o
+  281  src/ci/parser.c: In function ‘parse_cmd’:
+  282  src/ci/parser.c:593:9: error: switch jumps over variable initialization [-Werror=jump-misses-init]
+  283    593 |         case TOK_LOAD:       |         ^~~~
+  284  src/ci/parser.c:382:5: note: switch starts here
+  285    382 |     switch (token.type) {
+  286        |     ^~~~~~
+  287  src/ci/parser.c:573:19: note: ‘base’ declared here
+  288    573 |             Token base = advance(parser);
+  289        |                   ^~~~
+  290  src/ci/parser.c:608:9: error: switch jumps over variable initialization [-Werror=jump-misses-init]
+  291    608 |         case TOK_STORE:       |         ^~~~
+  292  src/ci/parser.c:382:5: note: switch starts here
+  293    382 |     switch (token.type) {
+  294        |     ^~~~~~
+  295  src/ci/parser.c:573:19: note: ‘base’ declared here
+  296    573 |             Token base = advance(parser);
+  297        |                   ^~~~
+  298  src/ci/parser.c:623:9: error: switch jumps over variable initialization [-Werror=jump-misses-init]
+  299    623 |         case TOK_PUT:       |         ^~~~
+  300  src/ci/parser.c:382:5: note: switch starts here
+  301    382 |     switch (token.type) {
+  302        |     ^~~~~~
+  303  src/ci/parser.c:573:19: note: ‘base’ declared here
+  304    573 |             Token base = advance(parser);
+  305        |                   ^~~~
+  306  src/ci/parser.c:636:9: error: switch jumps over variable initialization [-Werror=jump-misses-init]
+  307    636 |         default:
+  308        |         ^~~~~~~
+  309  src/ci/parser.c:382:5: note: switch starts here
+  310    382 |     switch (token.type) {
+  311        |     ^~~~~~
+  312  src/ci/parser.c:573:19: note: ‘base’ declared here
+  313    573 |             Token base = advance(parser);
+  314        |                   ^~~~
+  315  cc1: all warnings being treated as errors
+  316  make: *** [Makefile:105: build/ci/parser.o] Error 1
+  317  krish55@trix:~/cs429-fa2026-ci-lab-krish-cs429$ 
+  318  git status
+  319  git diff --stat
+  320  sed -n '226,330p' src/ci/parser.c
+  321  make clean
+  322  make
+  323  make test
+  324  make clean
+  325  make
+  326  make test_week3
+  327  git status
+  328  git add src/ci/parser.c src/ci/interpreter.c
+  329  git commit -m "Implement Week 3 command interpreter"
+  330  git push
+  331  git status
+  332  make clean
+  333  make all
+  334  make test_hashtable
+  335  make test_week2
+  336  make test_week3
+  337  make test_week4
+  338  make test_week4
+  339  git status
+  340  git commit -m "week 4 modifications"
+  341  git commit -m "Implement Week 4 control flow"
+  342  git push
+  343  git status
+  344  git add include/ci/interpreter.h include/hashtable/hashtable.h src/ci/interpreter.c src/ci/parser.c src/hashtable/hashtable.c
+  345  git status
+  346  git commit -m "week 4 modifications"
+  347  git push
+  348  git status
+  349  time ./bin/ci -i testcases/week4/fib_recursive.s -o /tmp/fib.out
+  350  time valgrind --tool=memcheck --leak-check=full ./bin/ci -i testcases/week4/fib_recursive.s -o /tmp/fib.out
+  351  clear
+  352  time ./bin/ci -i testcases/week4/fib_recursive.s -o /tmp/fib.out
+  353  time valgrind --tool=memcheck --leak-check=full ./bin/ci -i testcases/week4/fib_recursive.s -o /tmp/fib.out
+  354  ./bin/ci -i testcases/week4/fib_recursive.s -o /tmp/fib.out
+  355  echo $?
+  356  make all
+  357  make debug
+  358  make test_hashtable
+  359  make test_week4
+  360  time ./bin/ci -i testcases/week4/fib_recursive.s -o /tmp/fib.out
+  361  time valgrind --tool=memcheck --leak-check=full ./bin/ci -i testcases/week4/fib_recursive.s -o /tmp/fib.out
+  362  ./bin/ci -i testcases/week4/fib_recursive.s -o /tmp/fib.out
+  363  echo $?
+  364  git status
+  365  git status
+  366  git add include/hashtable/hashtable.h src/hashtable/hashtable.c include/ci/interpreter.h src/ci/parser.c src/ci/interpreter.c
+  367  git status
+  368  git commit -m "fixes for valgrind 30 second timeout"
+  369  git push
+  370  git status
+  371  make clean && make debug
+  372  make all
+  373  make test_week4
+  374  time valgrind --tool=memcheck --leak-check=full ./bin/ci -i testcases/week4/fib_recursive.s -o /tmp/fib.out
+  375  time ./bin/ci -i testcases/week4/fib_recursive.s -o /tmp/fib.out
+  376  make clean
+  377  make all
+  378  time ./bin/ci -i testcases/week4/fib_recursive.s -o /tmp/fib.out
+  379  time valgrind --tool=memcheck --leak-check=full ./bin/ci -i testcases/week4/fib_recursive.s -o /tmp/fib.out
+  380  # Clean build from scratch
+  381  make clean
+  382  make all
+  383  # Sanity check: confirm -O2 (or your course's release flag) is actually being used
+  384  # and there's no leftover -O0/-g debug flag
+  385  make clean
+  386  make all 2>&1 | grep -i "gcc\|cc "
+  387  # Time native run
+  388  time ./bin/ci -i testcases/week4/fib_recursive.s -o /tmp/fib.out
+  389  # Time Valgrind run (this is the one that matters for the 30s autograder limit)
+  390  time valgrind --tool=memcheck --leak-check=full --error-exitcode=2     ./bin/ci -i testcases/week4/fib_recursive.s -o /tmp/fib.out
+  391  # Also compare against the reference implementation, same way
+  392  time valgrind --tool=memcheck --leak-check=full --error-exitcode=2     ./bin/ci_reference -i testcases/week4/fib_recursive.s -o /tmp/fib_ref.out
+  393  # Check what's changed
+  394  git status
+  395  # Stage the modified file
+  396  git add src/ci/interpreter.c
+  397  # Commit with a clear message
+  398  git commit -m "valgrind timeout fix attempt #2"
+  399  # Push to your GitHub repo (which Gradescope pulls from)
+  400  git push
+  401  cd ..
+  402  pwd
+  403  git clone https://github.com/cs429-fa2026/cs429-fa2026-mm-lab-krish-cs429.git
+  404  ls
+  405  cd cs429-fa2025-mm-lab-krish-cs429
+  406  cd cs429-fa2026-mm-lab-krish-cs429
+  407  make
+  408  make test_week1
+  409  make
+  410  make test_week1
+  411  make heap_runner
+  412  ./heap_runner
+  413  grep -n -B25 -A10 "all bins" runner.c
+  414  cat traces/week1/short1.rep traces/week1/short2.rep
+  415  head -20 traces/week1/oom_easy.rep
+  416  grep -rn "uses_bins" *.c *.h
+  417  sed -n '360,400p' runner.c
+  418  sed -n '400,440p' runner.c
+  419  make clean
+  420  make test_week1
+  421     git status
+  422   git commit -m "MM lab week 1 with additional fixed files given by TAs"
+  423     git push
+  424  git status
+  425  git add -A
+  426  git commit -m "MM lab week 1"
+  427  git push
+  428  git status
+  429  git log -1 --stat
+  430  cat quicklist_check.c
+  431  cat coalesce_check.c
+  432  ls traces/week2
+  433  grep -n "quick\|coalesce" runner.c
+  434  make test_week2
+  435  awk '$1=="a"{s=$3+16; s=int((s+15)/16)*16; if(s<32)s=32; c[s]++} END{for(k in c) print c[k], k}' traces/week2/*.rep | sort -rn | head
+  436  make clear
+  437  make clean
+  438  make test_week2
+  439  make clean
+  440  make test_week2
+  441  unzip f2025e2-f-master.zip
+  442  cd f2025e2-f-master
+  443  ls
+  444  make
+  445  make mikes
+  446  make potbelly
+  447  make snarks
+  448  make snarfs
+  449  make potbelly
+  450  make mikes
+  451  gdb --args ./bin/sb -i testcases/helloworld.trace
+  452  make potbelly
+  453  make mikes
+  454  make cheba
+  455  git remote 0v
+  456  git remote -v
+  457  make clean
+  458  make test_week2
+  459     git add -A
+  460     git commit -m "MM lab week 2"
+  461     git push
+  462  git status
+  463  make potbelly
+  464  make cheba
+  465  make potbelly
+  466  make potbelly
+  467  make snarfs
+  468  make potebelly
+  469  make potbelly
+  470  make potbelly
+  471  make cheba
+  472  make mikes
+  473  ./bin/sb -i testcases/edges.trace
+  474  make potbelly
+  475  gdb --args ./bin/sb -i testcases/edges.trace
+  476  git remote -v
+  477  make potebelly
+  478  make potbelly
+  479  make cheba
+  480  make mikes
+  481  awk '$1=="a"{s=int(($3+8+15)/16)*16; if(s<32)s=32; c[s]++} END{for(k in c) print c[k], k}' traces/week2/*/*.rep | sort -rn | head -12
+  482  pwd
+  483  git remote -c
+  484  git remote -v
+  485  ls -l bin testcases
+  486  make trike
+  487  make
+  488  make raptor
+  489  pwd
+  490  git remote -v
+  491  ls -l bin testcases
+  492  make trike
+  493  pwd
+  494  ls -la
+  495  find . -maxdepth 2 -iname '*makefile*' -print
+  496  make -n trike
+  497  touch ~/.gdbinit
+  498  echo 'set history save on' >> ~/.gdbinit
+  499  cat ~/.gdbinit
+  500  git clone https://github.com/krish-cs429/cltp1.git
+  501  git remote -v
+  502  pwd
+  503  git stt=atus --short
+  504  git status --short
+  505  make clean
+  506  make debug
+  507  make check
+  508  git pull
+  509  clear
+  510  make clean
+  511  make debug
+  512  make check
+  513  ls -l mini_ci_reference
+  514  chmod u+x mini_ci_reference
+  515  ./mini_ci_reference testcases/basic_add.s
+  516  make check
+  517  cat testcases/basic_add.s
+  518  gdb ./mini_ci
+  519  make clean
+  520  make debug
+  521  make check
+  522  gdb ./mini_ci
+  523  history > shell_logs.txt
